@@ -1,4 +1,27 @@
-const { readline, print } = require('@ip-algorithmics/codeforces-io');
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+let inputString = "";
+let currentLine = 0;
+
+process.stdin.on("data", (inputStdin) => {
+  inputString += inputStdin;
+});
+
+process.stdin.on("end", (_) => {
+  inputString = inputString
+    .trim()
+    .split("\n")
+    .map((string) => {
+      return string.trim();
+    });
+    main();
+});
+
+function readLine() {
+  return inputString[currentLine++];
+}
+
 
 
 function dfs(root,par,edge,depth,up,Size){
@@ -39,10 +62,10 @@ function getLca(a,b,depth,up){
     return up[a][0];
 }
 function solve(){
-    let inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
+    let inp = readLine().split(" ").map((x) => parseInt(x));
     let n,q;
-    n = parseInt(inp[0],10);
-    q = parseInt(inp[1],10);
+    n = inp[0];
+    q = inp[1];
     let edge = new Array(n+1);
     let Size = new Array(n+1).fill(1);
     let depth = new Array(n+1).fill(0);
@@ -54,28 +77,26 @@ function solve(){
         up[i] = new Array(20).fill(0);
     }
     for(let i=1;i<n;i++){
-        inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
-        let x = parseInt(inp[0],10);
-        let y = parseInt(inp[1],10);
+        inp = readLine().split(" ").map((x) => parseInt(x));
+        let x = inp[0];
+        let y = inp[1];
         edge[x].push(y);
         edge[y].push(x);
     }
     dfs(1,0,edge,depth,up,Size);
     for(let i=0;i<q;i++){
-        inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
-        let x = parseInt(inp[0],10);
-        let y = parseInt(inp[1],10);
+        inp = readLine().split(" ").map((x) => parseInt(x));
+        let x = inp[0];
+        let y = inp[1];
         let lca = getLca(x,y,depth,up);
-        print(Size[lca]);
+        console.log(Size[lca]);
     }
 }
 
 function main(){
-    let inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
+    let inp = readLine().split(" ").map((x) => parseInt(x));
     let t = inp[0];
     for(let i=0;i<t;i++){
         solve();
     }
 }
-
-main();

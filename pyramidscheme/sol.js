@@ -1,7 +1,26 @@
-const { readline, print } = require('@ip-algorithmics/codeforces-io');
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
 
+let inputString = "";
+let currentLine = 0;
 
+process.stdin.on("data", (inputStdin) => {
+  inputString += inputStdin;
+});
 
+process.stdin.on("end", (_) => {
+  inputString = inputString
+    .trim()
+    .split("\n")
+    .map((string) => {
+      return string.trim();
+    });
+    solve();
+});
+
+function readLine() {
+  return inputString[currentLine++];
+}
 
 
 
@@ -34,9 +53,9 @@ function solve(){
             }
         }
     }
-    let input = readline().replace(/(\r\n|\n|\r)/gm, "").split(" ");
+    let input = readLine().split(" ").map((x) => parseInt(x));
     let n = parseInt(input[0],10);
-    input = readline().replace(/(\r\n|\n|\r)/gm, "").split(" ");
+    input = readLine().split(" ").map((x) => parseInt(x));
     for(let i=0;i<n-1;i++){
         let temp = parseInt(input[i],10);
         adj[temp].push(i+2);
@@ -49,12 +68,11 @@ function solve(){
         }
     }
 
-    print(v.length);
-    print(v);
+    console.log(v.length);
+    console.log(v);
 }
 
 
-solve();
 
 
 

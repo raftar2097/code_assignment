@@ -1,14 +1,35 @@
-const { readline, print } = require('@ip-algorithmics/codeforces-io');
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
 
+let inputString = "";
+let currentLine = 0;
+
+process.stdin.on("data", (inputStdin) => {
+  inputString += inputStdin;
+});
+
+process.stdin.on("end", (_) => {
+  inputString = inputString
+    .trim()
+    .split("\n")
+    .map((string) => {
+      return string.trim();
+    });
+    solve();
+});
+
+function readLine() {
+  return inputString[currentLine++];
+}
 
 function solve(){
-    var x = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
+    var x = readLine().split(" ").map((x) => parseInt(x));
     let t = parseInt(x[0],10);
     let p = parseInt(x[1],10);
     let query = [];
     while(t--){
-        let n = readline().replace(/(\r\n|\n|\r)/gm, "");
-        n = parseInt(n,10);
+        let inp = readLine().split(" ").map((x) => parseInt(x));
+        let n = parseInt(inp[0],10);
         query.push(n);
     }
     t = 0;
@@ -54,4 +75,4 @@ function upper_bound(arr,N,X)
     }
     return low;
 }
-solve();
+

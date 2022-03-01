@@ -1,4 +1,26 @@
-const { readline, print } = require('@ip-algorithmics/codeforces-io');
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+let inputString = "";
+let currentLine = 0;
+
+process.stdin.on("data", (inputStdin) => {
+  inputString += inputStdin;
+});
+
+process.stdin.on("end", (_) => {
+  inputString = inputString
+    .trim()
+    .split("\n")
+    .map((string) => {
+      return string.trim();
+    });
+    solve();
+});
+
+function readLine() {
+  return inputString[currentLine++];
+}
 
 
 
@@ -8,25 +30,25 @@ function val(sum,X,N){
 
 
 function solve(){
-    let inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
+    let inp = readLine().split(" ").map((x) => parseInt(x));
     let T = parseInt(inp[0],10);
     while(T--){
-        inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
+        inp = readLine().split(" ").map((x) => parseInt(x));
         let N = parseInt(inp[0],10);
         let arr = [];
-        inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
+        inp = readLine().split(" ").map((x) => parseInt(x));
         for(let i=1;i<=N;i++){
             arr[i] = parseInt(inp[i-1],10);
         }
-        inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
+        inp = readLine().split(" ").map((x) => parseInt(x));
         let Q = parseInt(inp[0],10);
         let L = new Array(Q).fill(0);
         let R = new Array(Q).fill(0);
-        inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
+        inp = readLine().split(" ").map((x) => parseInt(x));
         for(let i=0;i<Q;i++){
             L[i] = parseInt(inp[i],10);
         }
-        inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
+        inp = readLine().split(" ").map((x) => parseInt(x));
         for(let i=0;i<Q;i++){
             R[i] = parseInt(inp[i],10);
         }
@@ -36,9 +58,7 @@ function solve(){
             sum[i] = (sum[i-1]+arr[i])%M;
         }
         for(let i=0;i<Q;i++){
-            print((val(sum,R[i],N)-val(sum,L[i]-1,N)+M)%M)
+            console.log((val(sum,R[i],N)-val(sum,L[i]-1,N)+M)%M)
         }
     }
 }
-
-solve();

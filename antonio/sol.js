@@ -1,4 +1,29 @@
-const { readline, print } = require('@ip-algorithmics/codeforces-io');
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+let inputString = "";
+let currentLine = 0;
+
+process.stdin.on("data", (inputStdin) => {
+  inputString += inputStdin;
+});
+
+process.stdin.on("end", (_) => {
+  console.log(inputString);
+  inputString = inputString
+    .trim()
+    .split("\n")
+    .map((string) => {
+      return string.trim();
+    });
+    
+  solve();
+});
+
+function readLine() {
+  return inputString[currentLine++];
+}
+
 
 var mod = 1000000007;
 
@@ -24,11 +49,11 @@ function solve(){
     for(let i=1;i<100005;i++){
         fact[i] = moduloMultiplication(fact[i - 1],i,mod);
     }
-    let inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
+    let inp = readLine().split(" ");
     let n = parseInt(inp[0],10);
-    inp = readline().replace(/(\r\n|\n|\r)/gm, "").split(' ');
+    inp = readline().split(" ");
     let s = inp[0];
-    print(s);
+    console.log(s);
     let k = 0;
     for(let i=0;i<n;i++){
         if ((i+1<n) && (s[i]=='x') && (s[i + 1]=='x')) {
@@ -46,10 +71,8 @@ function solve(){
     let k1 = moduloMultiplication(fact[k],fact[k0],mod);
     k1 = k1 % mod;
     ans = ans* power(k1,mod-2);
-    print(ans%mod);
+    console.log(ans%mod);
 }
-
-solve();
 
 function moduloMultiplication(a, b, mod)
 {

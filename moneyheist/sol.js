@@ -1,5 +1,26 @@
-const { readline, print } = require('@ip-algorithmics/codeforces-io');
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
 
+let inputString = "";
+let currentLine = 0;
+
+process.stdin.on("data", (inputStdin) => {
+  inputString += inputStdin;
+});
+
+process.stdin.on("end", (_) => {
+  inputString = inputString
+    .trim()
+    .split("\n")
+    .map((string) => {
+      return string.trim();
+    });
+    solve();
+});
+
+function readLine() {
+  return inputString[currentLine++];
+}
 
 function compare(a,b){
     if(a.first>b.first)
@@ -17,13 +38,13 @@ function compare(a,b){
 }
 
 function solve(){
-    let input = readline().replace(/(\r\n|\n|\r)/gm, "").split(" ");
+    let input = readLine().split(" ").map((x) => parseInt(x));
     let n,m,k;
     n = parseInt(input[0],10);
     m = parseInt(input[1],10);
     k = parseInt(input[2],10);
     let a = new Array(n);
-    input = readline().replace(/(\r\n|\n|\r)/gm, "").split(" ");
+    input = readLine().split(" ").map((x) => parseInt(x));
     for(let i=0;i<n;i++){
           let obj = {};
           obj.first = parseInt(input[i],10);
@@ -37,7 +58,6 @@ function solve(){
         sumBeauty+=a[i].first;
         ind[i] = a[i].second;
     }
-    print(sumBeauty);
+    console.log(sumBeauty);
 }
 
-solve();
