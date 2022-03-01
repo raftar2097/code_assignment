@@ -10,7 +10,6 @@ process.stdin.on("data", (inputStdin) => {
 });
 
 process.stdin.on("end", (_) => {
-  console.log(inputString);
   inputString = inputString
     .trim()
     .split("\n")

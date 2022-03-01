@@ -1,6 +1,7 @@
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
+// your code goes here
 let inputString = "";
 let currentLine = 0;
 
@@ -37,7 +38,6 @@ function solve(){
         if(vis[a]===0)
 		{
 			top[a]=[...curr];
-            console,log(top[a]);
 			curr.push(a);
 			vis[a]=1;
 			ans[a]=i;
@@ -52,7 +52,7 @@ function solve(){
             console,log(-1);
             continue;
         }
-        console,log(ans[t]);
+        console.log(ans[t]);
         ans[t]=1;
         top[t].forEach((it)=>{
             top[it].push(t);

@@ -9,7 +9,6 @@ process.stdin.on("data", (inputStdin) => {
 });
 
 process.stdin.on("end", (_) => {
-  console.log(inputString);
   inputString = inputString
     .trim()
     .split("\n")
@@ -20,7 +19,7 @@ process.stdin.on("end", (_) => {
   solve();
 });
 
-function readLine() {
+function readline() {
   return inputString[currentLine++];
 }
 
@@ -49,11 +48,10 @@ function solve(){
     for(let i=1;i<100005;i++){
         fact[i] = moduloMultiplication(fact[i - 1],i,mod);
     }
-    let inp = readLine().split(" ");
+    let inp = readline().split(" ");
     let n = parseInt(inp[0],10);
     inp = readline().split(" ");
     let s = inp[0];
-    console.log(s);
     let k = 0;
     for(let i=0;i<n;i++){
         if ((i+1<n) && (s[i]=='x') && (s[i + 1]=='x')) {

@@ -3,6 +3,7 @@ process.stdin.setEncoding('utf8');
 
 let inputString = "";
 let currentLine = 0;
+var M = 1000000007;
 
 process.stdin.on("data", (inputStdin) => {
   inputString += inputStdin;
