@@ -49,7 +49,7 @@ function solve(){
         let t = parseInt(x[i],10);
         i++;
         if(vis[t]==0){
-            console,log(-1);
+            console.log(-1);
             continue;
         }
         console.log(ans[t]);
